@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">KamusKu</string>
+    <string name="appbar_scrolling_view_behavior">scroll</string>
+    <string name="kata">Kata</string>
+    <string name="arti">Arti</string>
+    <string name="indoeng">Indonesia - English</string>
+    <string name="engindo">English - Indonesia</string>
+    <string name="cari">Translate</string>
 </resources>
