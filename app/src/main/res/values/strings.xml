@@ -6,4 +6,6 @@
     <string name="indoeng">Indonesia - English</string>
     <string name="engindo">English - Indonesia</string>
     <string name="cari">Translate</string>
+    <string name="navigation_drawer_open">Buka</string>
+    <string name="navigation_drawer_close">Tutup</string>
 </resources>

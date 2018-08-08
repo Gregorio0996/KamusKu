@@ -11,6 +11,9 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
+import static com.example.gregorio.kamusku.DetailActivity.EXTRA_ARTI;
+import static com.example.gregorio.kamusku.DetailActivity.EXTRA_KATA;
+
 public class EnglishAdapter extends RecyclerView.Adapter<EnglishAdapter.EnglishHolder> {
     private ArrayList<EnglishModel> mData = new ArrayList<>();
     private Activity activity;
@@ -39,7 +42,8 @@ public class EnglishAdapter extends RecyclerView.Adapter<EnglishAdapter.EnglishH
             @Override
             public void onItemClicked(View view, int position) {
                 Intent intent = new Intent(activity, DetailActivity.class);
-                //intent.putExtra(EXTRA_KATA, IndoModel.get(position).ge)
+                intent.putExtra(EXTRA_KATA, mData.get(position).getKata());
+                intent.putExtra(EXTRA_ARTI, mData.get(position).getArti());
             }
         }));
     }

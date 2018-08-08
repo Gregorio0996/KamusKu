@@ -14,7 +14,7 @@
         app:popupTheme="@style/AppTheme.PopupOverlay" />
 
     <TextView
-        android:id="@+id/tvWord"
+        android:id="@+id/tvKata"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/toolbar"
@@ -28,17 +28,17 @@
         tools:text="@string/kata" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/tvArti"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/tvWord"
+        android:layout_below="@+id/tvKata"
         android:layout_marginEnd="16dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:text="@string/arti"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvWord" />
+        app:layout_constraintTop_toBottomOf="@+id/tvKata" />
 
 
 </RelativeLayout>
