@@ -1,5 +1,6 @@
 package com.example.gregorio.kamusku;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
@@ -95,25 +96,40 @@ public class KamusHelper {
         return arrayIndo;
     }
 
-    public ArrayList<IndoModel> getAllDataIndo(){
-        Cursor cursor = database.query(TABEL_INDO, null, null, null,null, null,_ID+ " ASC",null);
+    public ArrayList<EnglishModel> getAllDataEng(){
+        Cursor cursor = database.query(TABEL_ENG, null, null, null,null, null,_ID+ " ASC",null);
         cursor.moveToFirst();
-        ArrayList<IndoModel> arrayIndo = new ArrayList<>();
-        IndoModel indoModel;
+        ArrayList<EnglishModel> arrayEng = new ArrayList<>();
+        EnglishModel englishModel;
         if (cursor.getCount()>0){
             do{
-                indoModel = new IndoModel();
-                indoModel.setId(cursor.getInt(cursor.getColumnIndexOrThrow(_ID)));
-                indoModel.setKata(cursor.getString(cursor.getColumnIndexOrThrow(KATA)));
-                indoModel.setArti(cursor.getString(cursor.getColumnIndexOrThrow(ARTI)));
+                englishModel = new EnglishModel();
+                englishModel.setId(cursor.getInt(cursor.getColumnIndexOrThrow(_ID)));
+                englishModel.setKata(cursor.getString(cursor.getColumnIndexOrThrow(KATA)));
+                englishModel.setArti(cursor.getString(cursor.getColumnIndexOrThrow(ARTI)));
 
-                arrayIndo.add(indoModel);
+                arrayEng.add(englishModel);
                 cursor.moveToNext();
             }while (!cursor.isAfterLast());
         }
         cursor.close();
-        return arrayIndo;
+        return arrayEng;
     }
+
+    public void insertIndo(IndoModel indoModel){
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(KATA, indoModel.getKata());
+        contentValues.put(ARTI, indoModel.getArti());
+        database.insert(TABEL_INDO, null, contentValues);
+    }
+
+    public void insertEnglish(EnglishModel englishModel){
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(KATA, englishModel.getKata());
+        contentValues.put(ARTI, englishModel.getArti());
+        database.insert(TABEL_ENG, null, contentValues);
+    }
+
 
 
 
