@@ -76,7 +76,43 @@ public class KamusHelper {
     }
 
     public ArrayList<IndoModel> getAllDataIndo(){
-        Cursor cursor = database.query()
+        Cursor cursor = database.query(TABEL_INDO, null, null, null,null, null,_ID+ " ASC",null);
+        cursor.moveToFirst();
+        ArrayList<IndoModel> arrayIndo = new ArrayList<>();
+        IndoModel indoModel;
+        if (cursor.getCount()>0){
+            do{
+                indoModel = new IndoModel();
+                indoModel.setId(cursor.getInt(cursor.getColumnIndexOrThrow(_ID)));
+                indoModel.setKata(cursor.getString(cursor.getColumnIndexOrThrow(KATA)));
+                indoModel.setArti(cursor.getString(cursor.getColumnIndexOrThrow(ARTI)));
+
+                arrayIndo.add(indoModel);
+                cursor.moveToNext();
+            }while (!cursor.isAfterLast());
+        }
+        cursor.close();
+        return arrayIndo;
+    }
+
+    public ArrayList<IndoModel> getAllDataIndo(){
+        Cursor cursor = database.query(TABEL_INDO, null, null, null,null, null,_ID+ " ASC",null);
+        cursor.moveToFirst();
+        ArrayList<IndoModel> arrayIndo = new ArrayList<>();
+        IndoModel indoModel;
+        if (cursor.getCount()>0){
+            do{
+                indoModel = new IndoModel();
+                indoModel.setId(cursor.getInt(cursor.getColumnIndexOrThrow(_ID)));
+                indoModel.setKata(cursor.getString(cursor.getColumnIndexOrThrow(KATA)));
+                indoModel.setArti(cursor.getString(cursor.getColumnIndexOrThrow(ARTI)));
+
+                arrayIndo.add(indoModel);
+                cursor.moveToNext();
+            }while (!cursor.isAfterLast());
+        }
+        cursor.close();
+        return arrayIndo;
     }
 
 
