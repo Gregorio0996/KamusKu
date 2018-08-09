@@ -8,4 +8,5 @@
     <string name="cari">Translate</string>
     <string name="navigation_drawer_open">Buka</string>
     <string name="navigation_drawer_close">Tutup</string>
+    <string name="masukan_kata_disini">Ketik Kata</string>
 </resources>

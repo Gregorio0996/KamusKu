@@ -4,13 +4,17 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 
@@ -76,10 +80,76 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         index = R.id.nav_indoeng;
     }
 
-    
+    @Override
+    public void onBackPressed() {
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
+            drawer.closeDrawer(GravityCompat.START);
+        } else {
+            super.onBackPressed();
+        }
+    }
 
     @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        return false;
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.menu_main, menu);
+        final MenuItem search = menu.findItem(R.id.search);
+        SearchView searchView = (SearchView) search.getActionView();
+        searchView.setMaxWidth(R.dimen.search_max_width);
+        searchView.setQueryHint(getResources().getString(R.string.masukan_kata_disini));
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return true;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                kamusHelper.open();
+                indoModels = kamusHelper.getDataByNameIndo(newText);
+                englishModels = kamusHelper.getDataByNameEng(newText);
+                kamusHelper.close();
+                if (index == R.id.nav_indoeng) {
+                    recyclerView.setAdapter(indonesiaAdapter);
+                    indonesiaAdapter.addItem(indoModels);
+                }
+                if (index == R.id.nav_engindo) {
+                    recyclerView.setAdapter(englishAdapter);
+                    englishAdapter.addItem(englishModels);
+                }
+                return false;
+            }
+        });
+        return true;
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState){
+        super.onSaveInstanceState(outState);
+        outState.putInt("Tag", index);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+        int id = item.getItemId();
+        return super.onOptionsItemSelected(item);
+    }
+
+
+    @SuppressWarnings("StatementKosong")
+    @Override
+    public boolean onNavigationItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.nav_indoeng) {
+            toolbar.setTitle(R.string.indoeng);
+            recyclerView.setAdapter(indonesiaAdapter);
+            indonesiaAdapter.addItem(indoModels);
+        } else if (id == R.id.nav_engindo) {
+            toolbar.setTitle(R.string.engindo);
+            recyclerView.setAdapter(englishAdapter);
+            englishAdapter.addItem(englishModels);
+        }
+        drawer.closeDrawer(GravityCompat.START);
+        return true;
     }
 }
