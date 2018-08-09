@@ -38,6 +38,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         setContentView(R.layout.activity_main);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        kamusHelper = new KamusHelper(this);
+        englishAdapter = new EnglishAdapter(this);
+        indonesiaAdapter = new IndonesiaAdapter(this);
         recyclerView = (RecyclerView) findViewById(R.id.recyclerview);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(indonesiaAdapter);
@@ -94,10 +97,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         MenuInflater menuInflater = getMenuInflater();
         menuInflater.inflate(R.menu.menu_main, menu);
         final MenuItem search = menu.findItem(R.id.search);
-        SearchView searchView = (SearchView) search.getActionView();
+        android.widget.SearchView searchView = (android.widget.SearchView) search.getActionView();
         searchView.setMaxWidth(R.dimen.search_max_width);
         searchView.setQueryHint(getResources().getString(R.string.masukan_kata_disini));
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+        searchView.setOnQueryTextListener(new android.widget.SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
                 return true;
@@ -124,13 +127,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     @Override
-    protected void onSaveInstanceState(Bundle outState){
+    protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putInt("Tag", index);
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item){
+    public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         return super.onOptionsItemSelected(item);
     }

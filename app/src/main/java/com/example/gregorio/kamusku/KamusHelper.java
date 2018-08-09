@@ -130,6 +130,18 @@ public class KamusHelper {
         database.insert(TABEL_ENG, null, contentValues);
     }
 
+    public void beginTransaction(){
+        database.beginTransaction();
+    }
+
+    public void setTransactionSuccess(){
+        database.setTransactionSuccessful();
+    }
+
+    public void endTransaction(){
+        database.endTransaction();
+    }
+
 
 
 

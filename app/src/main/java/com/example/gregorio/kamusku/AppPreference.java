@@ -6,19 +6,20 @@ import android.preference.PreferenceManager;
 import android.support.design.widget.AppBarLayout;
 
 public class AppPreference {
+    SharedPreferences sharedPreferences;
+    Context context;
 
-    private SharedPreferences sharedPreferences;
-    AppPreference(Context context){
+    public AppPreference(Context context) {
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
     }
 
-    void setFirstRun(){
+    public void setFirstRun() {
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putBoolean("Pertama Kali Jalan", false);
-        editor.apply();
+        editor.commit();
     }
 
-    Boolean getFirstRun(){
+    public Boolean getFirstRun() {
         return sharedPreferences.getBoolean("Pertama Kali Jalan", true);
     }
 }
