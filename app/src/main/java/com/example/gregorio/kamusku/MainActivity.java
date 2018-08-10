@@ -1,5 +1,6 @@
 package com.example.gregorio.kamusku;
 
+import android.app.ActionBar;
 import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
@@ -14,6 +15,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -104,6 +106,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         menuInflater.inflate(R.menu.menu_main, menu);
         final MenuItem search = menu.findItem(R.id.search);
         android.widget.SearchView searchView = (android.widget.SearchView) search.getActionView();
+        searchView.setLayoutParams(new ActionBar.LayoutParams(Gravity.RIGHT));
         searchView.setMaxWidth(R.dimen.search_max_width);
         searchView.setQueryHint(getResources().getString(R.string.masukan_kata_disini));
         searchView.setOnQueryTextListener(new android.widget.SearchView.OnQueryTextListener() {
