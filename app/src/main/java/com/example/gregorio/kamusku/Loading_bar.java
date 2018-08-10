@@ -14,12 +14,13 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 public class Loading_bar extends AppCompatActivity {
-    ProgressBar  progressBar2;
+    ProgressBar progressBar1, progressBar2;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_loading_bar);
         progressBar2 = (ProgressBar) findViewById(R.id.progressBar4);
+        progressBar1 = (ProgressBar) findViewById(R.id.progressBar3);
         new LoadData().execute();
     }
         private class LoadData extends AsyncTask<Void, Integer, Void> {
@@ -27,7 +28,7 @@ public class Loading_bar extends AppCompatActivity {
             KamusHelper kamusHelper;
             AppPreference appPreference;
             double progress;
-            double maxprogress = 100;
+            double maxprogress = 280;
 
             @Override
             protected void onPreExecute() {
@@ -90,6 +91,7 @@ public class Loading_bar extends AppCompatActivity {
             @Override
             protected void onProgressUpdate(Integer... values) {
                 progressBar2.setProgress(values[0]);
+
 
             }
 

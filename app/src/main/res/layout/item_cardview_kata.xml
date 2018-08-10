@@ -18,7 +18,7 @@
         android:id="@+id/ly_1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/activity_horizontal_margin"
+        android:layout_gravity="center_horizontal"
         >
 
         <TextView
@@ -26,8 +26,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
+            android:paddingLeft="@dimen/margin_kata"
+            android:paddingTop="@dimen/margin_kata"
             android:text="@string/kata"
-            android:textSize="16sp"
+            android:textSize="20sp"
             android:textStyle="bold"
             android:textColor="@color/colorBlack"/>
     </RelativeLayout>

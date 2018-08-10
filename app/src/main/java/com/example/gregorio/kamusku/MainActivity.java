@@ -1,5 +1,6 @@
 package com.example.gregorio.kamusku;
 
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -17,6 +18,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -31,6 +33,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     NavigationView navigationView;
     Toolbar toolbar;
     DrawerLayout drawer;
+    boolean doubleBackToExit = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,11 +80,22 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public void onBackPressed() {
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
+        try{if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
-        } else {
+        } else if (doubleBackToExit) {
             super.onBackPressed();
+            return;
+        }}catch (Exception e){
+            e.printStackTrace();
         }
+        this.doubleBackToExit = true;
+        Toast.makeText(this, "Pencet Sekali lagi untuk KELUAR", Toast.LENGTH_SHORT).show();
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                doubleBackToExit = false;
+            }
+        }, 2000);
     }
 
     @Override
@@ -129,7 +143,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         int id = item.getItemId();
         return super.onOptionsItemSelected(item);
     }
-
 
     @SuppressWarnings("StatementKosong")
     @Override

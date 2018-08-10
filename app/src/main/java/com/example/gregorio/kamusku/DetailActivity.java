@@ -1,12 +1,15 @@
 package com.example.gregorio.kamusku;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Build;
+import android.os.Handler;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class DetailActivity extends AppCompatActivity {
 
@@ -25,7 +28,8 @@ public class DetailActivity extends AppCompatActivity {
         String arti = getIntent().getStringExtra(EXTRA_ARTI);
         String title = "Detail " + kata;
         Toolbar toolbar = findViewById(R.id.toolbar);
-        toolbar.setTitle(title);//requiers api lollipop
+        toolbar.setTitle(title);
+        toolbar.setTitleTextColor(Color.WHITE);//requiers api lollipop
         setSupportActionBar(toolbar);
         if (getSupportActionBar() != null) getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         tvKata.setText(kata);
@@ -35,8 +39,9 @@ public class DetailActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        Intent kembali = new Intent(getApplicationContext(), MainActivity.class);
-        startActivity(kembali);
+
+            Intent kembali = new Intent(getApplicationContext(), MainActivity.class);
+            startActivity(kembali);
     }
 
     @Override
