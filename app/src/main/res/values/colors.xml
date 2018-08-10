@@ -5,5 +5,7 @@
     <color name="colorAccent">#ef0e19</color>
     <color name="colorBlack">#000000</color>
     <color name="colorCard">#8c8e8f</color>
+    <color name="Frame_head">#279ed4</color>
+    <color name="Frame_foot">#bababa</color>
     <color name="white">#ffffff</color>
 </resources>

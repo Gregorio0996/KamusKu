@@ -122,7 +122,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     recyclerView.setAdapter(indonesiaAdapter);
                     indonesiaAdapter.addItem(indoModels);
                 }
-                if (index == R.id.nav_engindo) {
+                else if (index == R.id.nav_engindo) {
                     recyclerView.setAdapter(englishAdapter);
                     englishAdapter.addItem(englishModels);
                 }

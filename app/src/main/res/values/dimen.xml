@@ -3,8 +3,9 @@
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="floating">18dp</dimen>
-    <dimen name="nav_header_height">18dp</dimen>
+    <dimen name="nav_header_height">180dp</dimen>
     <dimen name="search_max_width">20dp</dimen>
     <dimen name="margin_kata">10dp</dimen>
+    <dimen name="margin_antar_teks">8dp</dimen>
 
 </resources>
