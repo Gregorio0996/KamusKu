@@ -41,36 +41,34 @@ public class Loading_bar extends AppCompatActivity {
                 if (firstRun) {
                     ArrayList<IndoModel> indoModels = preLoadRaw();
                     ArrayList<EnglishModel> englishModels = preLoadRaw2();
-
                     kamusHelper.open();
-                    kamusHelper.beginTransaction();
-                    /*progress = 30;
+                    progress = 30;
                     publishProgress((int) progress);
                     Double progressMaxInsert = 80.0;
                     Double progressDiff = (progressMaxInsert - progress) / indoModels.size();
-                    Double progressDiff2 = (progressMaxInsert - progress) / englishModels.size();*/
+                    Double progressDiff2 = (progressMaxInsert - progress) / englishModels.size();
+                    kamusHelper.beginTransaction();
                     try {
                         for (IndoModel model : indoModels) {
-                            kamusHelper.insertIndo(model);
-                            //progress += progressDiff;
-                            //publishProgress((int) progress);
+                            kamusHelper.insertTransactionInd(model);
+                            progress += progressDiff;
+                            publishProgress((int) progress);
                         }
 
 
                         for (EnglishModel model2 : englishModels) {
-                            kamusHelper.insertEnglish(model2);
-                            //progress += progressDiff2;
-                            //publishProgress((int) progress);
+                            kamusHelper.insertTransactionEng(model2);
+                            progress += progressDiff2;
+                            publishProgress((int) progress);
                         }
                         kamusHelper.setTransactionSuccess();
                     }catch (Exception e){
-                        Log.e(TAG, "do in background : exception");
+                        Log.e(TAG, "Sukses");
                         e.printStackTrace();
                     }
                     kamusHelper.endTransaction();
                     kamusHelper.close();
-                    appPreference.setFirstRun();
-
+                    appPreference.setFirstRun(false);
                     publishProgress((int) maxprogress);
 
                 } else {
@@ -78,10 +76,10 @@ public class Loading_bar extends AppCompatActivity {
                         synchronized (this) {
                             this.wait(2000);
 
-                            //publishProgress(50);
+                            publishProgress(50);
 
-                            //this.wait(2000);
-                            //publishProgress((int) maxprogress);
+                            this.wait(2000);
+                            publishProgress((int) maxprogress);
                         }
                     } catch (Exception e) {
                     }
@@ -89,11 +87,11 @@ public class Loading_bar extends AppCompatActivity {
                 return null;
             }
 
-            /*@Override
+            @Override
             protected void onProgressUpdate(Integer... values) {
                 progressBar2.setProgress(values[0]);
-                progressBar1.setProgress(values[1]);
-            }*/
+
+            }
 
             @Override
             protected void onPostExecute(Void result) {

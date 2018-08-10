@@ -23,10 +23,9 @@ public class DetailActivity extends AppCompatActivity {
         TextView tvArti = findViewById(R.id.tvArti);
         String kata = getIntent().getStringExtra(EXTRA_KATA);
         String arti = getIntent().getStringExtra(EXTRA_ARTI);
-        String title = "Detail" + kata;
-
+        String title = "Detail " + kata;
         Toolbar toolbar = findViewById(R.id.toolbar);
-        toolbar.setTitle(title); //requiers api lollipop
+        toolbar.setTitle(title);//requiers api lollipop
         setSupportActionBar(toolbar);
         if (getSupportActionBar() != null) getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         tvKata.setText(kata);

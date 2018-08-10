@@ -3,7 +3,6 @@ package com.example.gregorio.kamusku;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.text.Layout;
 import android.view.LayoutInflater;
@@ -38,17 +37,18 @@ public class IndonesiaAdapter extends RecyclerView.Adapter<IndonesiaAdapter.Indo
     }
 
     @Override
-    public void onBindViewHolder(IndonesiaHolder holder, int position) {
+    public void onBindViewHolder(IndonesiaHolder holder, final int position) {
     holder.textViewKata.setText(mData.get(position).getKata());
-    holder.textViewKata.setOnClickListener(new CustomOnItemClickListener(position, new CustomOnItemClickListener.OnItemClickCallback() {
-        @Override
-        public void onItemClicked(View view, int position) {
-            Intent intent = new Intent(activity, DetailActivity.class);
-            intent.putExtra(EXTRA_KATA, mData.get(position).getKata());
-            intent.putExtra(EXTRA_ARTI, mData.get(position).getArti());
-            //intent.putExtra(EXTRA_KATA, IndoModel.get(position).ge)
-        }
-    }));
+        holder.textViewKata.setOnClickListener(new CustomOnItemClickListener(position, new CustomOnItemClickListener.OnItemClickCallback() {
+            @Override
+            public void onItemClicked(View view, int position) {
+                Intent intent = new Intent(activity, DetailActivity.class);
+                intent.putExtra(EXTRA_KATA, mData.get(position).getKata());
+                intent.putExtra(EXTRA_ARTI, mData.get(position).getArti());
+                activity.startActivity(intent);
+            }
+        }));
+
     }
 
     @Override
@@ -68,7 +68,6 @@ public class IndonesiaAdapter extends RecyclerView.Adapter<IndonesiaAdapter.Indo
 
     public class IndonesiaHolder extends RecyclerView.ViewHolder {
         private TextView textViewKata;
-
         public IndonesiaHolder(View view) {
             super(view);
             textViewKata = (TextView)view.findViewById(R.id.textKata);

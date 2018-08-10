@@ -13,9 +13,9 @@ public class AppPreference {
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
     }
 
-    public void setFirstRun() {
+    public void setFirstRun(Boolean input) {
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putBoolean("Pertama Kali Jalan", false);
+        editor.putBoolean("Pertama Kali Jalan", input);
         editor.commit();
     }
 

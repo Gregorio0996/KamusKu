@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteStatement;
 
 import java.util.ArrayList;
 
@@ -130,6 +131,24 @@ public class KamusHelper {
         database.insert(TABEL_ENG, null, contentValues);
     }
 
+    public void insertTransactionInd(IndoModel indoModel){
+        String sql = "INSERT INTO "+ TABEL_INDO + " (" + KATA + "," + ARTI + ") VALUES (? ,?)";
+        SQLiteStatement stIndo = database.compileStatement(sql);
+        stIndo.bindString(1, indoModel.getKata());
+        stIndo.bindString(2, indoModel.getArti());
+        stIndo.execute();
+        stIndo.clearBindings();
+    }
+
+    public void insertTransactionEng(EnglishModel englishModel){
+        String sql = "INSERT INTO "+ TABEL_ENG + " (" + KATA + "," + ARTI + ") VALUES (? ,?)";
+        SQLiteStatement stEng = database.compileStatement(sql);
+        stEng.bindString(1, englishModel.getKata());
+        stEng.bindString(2, englishModel.getArti());
+        stEng.execute();
+        stEng.clearBindings();
+    }
+
     public void beginTransaction(){
         database.beginTransaction();
     }
@@ -141,8 +160,6 @@ public class KamusHelper {
     public void endTransaction(){
         database.endTransaction();
     }
-
-
 
 
 }

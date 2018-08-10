@@ -51,14 +51,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         indonesiaAdapter.addItem(indoModels);
         drawer = (DrawerLayout) findViewById(R.id.activity_main);
 
-        FloatingActionButton floating = (FloatingActionButton) findViewById(R.id.floating);
-        floating.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Snackbar.make(v, "Ganti dengan aksi", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);

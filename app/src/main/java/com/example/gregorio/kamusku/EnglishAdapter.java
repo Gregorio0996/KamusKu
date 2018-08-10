@@ -3,6 +3,7 @@ package com.example.gregorio.kamusku;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,6 +19,7 @@ public class EnglishAdapter extends RecyclerView.Adapter<EnglishAdapter.EnglishH
     private ArrayList<EnglishModel> mData = new ArrayList<>();
     private Activity activity;
     private LayoutInflater mInflater;
+
 
     public EnglishAdapter(Activity activity) {
         mInflater = (LayoutInflater) activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -36,7 +38,7 @@ public class EnglishAdapter extends RecyclerView.Adapter<EnglishAdapter.EnglishH
     }
 
     @Override
-    public void onBindViewHolder(EnglishAdapter.EnglishHolder holder, int position) {
+    public void onBindViewHolder(EnglishAdapter.EnglishHolder holder, final int position) {
         holder.textViewKata.setText(mData.get(position).getKata());
         holder.textViewKata.setOnClickListener(new CustomOnItemClickListener(position, new CustomOnItemClickListener.OnItemClickCallback() {
             @Override
@@ -44,8 +46,12 @@ public class EnglishAdapter extends RecyclerView.Adapter<EnglishAdapter.EnglishH
                 Intent intent = new Intent(activity, DetailActivity.class);
                 intent.putExtra(EXTRA_KATA, mData.get(position).getKata());
                 intent.putExtra(EXTRA_ARTI, mData.get(position).getArti());
+                activity.startActivity(intent);
             }
         }));
+
+
+
     }
 
     @Override
@@ -65,7 +71,6 @@ public class EnglishAdapter extends RecyclerView.Adapter<EnglishAdapter.EnglishH
 
     public class EnglishHolder extends RecyclerView.ViewHolder {
         private TextView textViewKata;
-
         public EnglishHolder(View view) {
             super(view);
             textViewKata = (TextView) view.findViewById(R.id.textKata);
