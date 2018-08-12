@@ -61,22 +61,22 @@ public class EnglishModel {
         dest.writeString(this.arti);
     }*/
 
-        protected EnglishModel(Parcel in){
-            this.id = in.readInt();
-            this.kata = in.readString();
-            this.arti = in.readString();
+    protected EnglishModel(Parcel in) {
+        this.id = in.readInt();
+        this.kata = in.readString();
+        this.arti = in.readString();
+    }
+
+    public static final Parcelable.Creator<EnglishModel> CREATOR = new Parcelable.Creator<EnglishModel>() {
+        @Override
+        public EnglishModel createFromParcel(Parcel source) {
+            return new EnglishModel(source);
         }
 
-        public static final Parcelable.Creator<EnglishModel> CREATOR = new Parcelable.Creator<EnglishModel>() {
-            @Override
-            public EnglishModel createFromParcel(Parcel source) {
-                return new EnglishModel(source);
-            }
-
-            @Override
-            public EnglishModel[] newArray(int size) {
-                return new EnglishModel[size];
-            }
-        };
+        @Override
+        public EnglishModel[] newArray(int size) {
+            return new EnglishModel[size];
+        }
+    };
 
 }

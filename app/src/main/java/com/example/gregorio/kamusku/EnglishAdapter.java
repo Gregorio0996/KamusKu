@@ -51,7 +51,6 @@ public class EnglishAdapter extends RecyclerView.Adapter<EnglishAdapter.EnglishH
         }));
 
 
-
     }
 
     @Override
@@ -71,6 +70,7 @@ public class EnglishAdapter extends RecyclerView.Adapter<EnglishAdapter.EnglishH
 
     public class EnglishHolder extends RecyclerView.ViewHolder {
         private TextView textViewKata;
+
         public EnglishHolder(View view) {
             super(view);
             textViewKata = (TextView) view.findViewById(R.id.textKata);

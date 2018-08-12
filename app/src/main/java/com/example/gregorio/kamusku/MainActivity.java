@@ -54,6 +54,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         englishModels = kamusHelper.getAllDataEng();
         kamusHelper.close();
         indonesiaAdapter.addItem(indoModels);
+        englishAdapter.addItem(englishModels);
         drawer = (DrawerLayout) findViewById(R.id.activity_main);
 
 
@@ -152,10 +153,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public boolean onNavigationItemSelected(MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.nav_indoeng) {
+            index = R.id.nav_indoeng;
             toolbar.setTitle(R.string.indoeng);
             recyclerView.setAdapter(indonesiaAdapter);
             indonesiaAdapter.addItem(indoModels);
         } else if (id == R.id.nav_engindo) {
+            index = R.id.nav_engindo;
             toolbar.setTitle(R.string.engindo);
             recyclerView.setAdapter(englishAdapter);
             englishAdapter.addItem(englishModels);

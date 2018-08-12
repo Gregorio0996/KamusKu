@@ -14,6 +14,8 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 public class Loading_bar extends AppCompatActivity {
+
+
     ProgressBar progressBar1, progressBar2;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
